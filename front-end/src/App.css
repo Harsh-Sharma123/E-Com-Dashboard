@@ -1,7 +1,53 @@
+
+.outer{
+  background-color: skyblue;
+}
+.maxOuter{
+  max-width: 1200px;
+  margin: auto;
+  text-align: center;
+}
+
+.innerBox{
+  /* background-color: green; */
+}
+
 .nav-ul li{
   display: inline-block;
   padding: 10px;
 }
+
+.nav-ul li a{
+  color: #fff;
+  padding: 5px;
+  text-decoration: none;
+}
+
+.nav-ul{
+  padding: 5px;
+  margin: 0px;
+}
+
+.footer{
+  position: absolute;
+  bottom: 0px;
+  text-align: center;
+  background-color: skyblue;
+  width: 100%;
+  /* color: #fff; */
+}
+
+.signupForm{
+  /* margin: auto; */
+  background-color: red;
+  text-align: center;
+}
+
+.inputBox{
+  border-radius: 6px;
+  margin: auto;
+}
+
 
 @media (prefers-reduced-motion: no-preference) {
   .App-logo {
