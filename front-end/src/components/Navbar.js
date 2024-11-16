@@ -1,5 +1,5 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { Link, NavLink } from 'react-router-dom';
 
 const Navbar = () => {
   return (
@@ -7,12 +7,12 @@ const Navbar = () => {
     <div className='maxOuter'>
       <div className='innerBox'>
         <ul className='nav-ul'>
-          <li><Link to="/">Products</Link></li>
-          <li><Link to="/add">Add Product</Link></li>
-          <li><Link to="/update">Update Product</Link></li>
-          <li><Link to="/logout">Logout</Link></li>
-          <li><Link to="/profile">Profile</Link></li>
-          <li><Link to="/signup">Signup</Link></li>
+          <li><NavLink activeClassName='active' to="/">Products</NavLink></li>
+          <li><NavLink activeClassName='active' to="/add">Add Product</NavLink></li>
+          <li><NavLink activeClassName='active' to="/update">Update Product</NavLink></li>
+          <li><NavLink activeClassName='active' to="/logout">Logout</NavLink></li>
+          <li><NavLink activeClassName='active' to="/profile">Profile</NavLink></li>
+          <li><NavLink activeClassName='active' to="/signup">Signup</NavLink></li>
         </ul>
       </div>
     </div>
