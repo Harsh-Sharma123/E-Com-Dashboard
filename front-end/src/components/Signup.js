@@ -1,5 +1,5 @@
 
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 const Signup = () => {
@@ -9,6 +9,14 @@ const Signup = () => {
     const [password, setPassword] = useState("");
 
     const navigate = useNavigate();
+
+    useEffect(() => {
+        const auth = localStorage.getItem("user");
+
+        if(auth){
+            navigate("/");
+        }
+    })
 
     const handleSubmit = async () => {
         console.log(name);
@@ -27,6 +35,8 @@ const Signup = () => {
         if(res){
             navigate("/");
         }
+
+        localStorage.setItem("user", JSON.stringify(res));
         
     }
     
