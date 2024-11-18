@@ -1,23 +1,27 @@
 const express = require("express");
 
-const mongoose = require("mongoose");
+const cors = require("cors");
+
+require("./db/config.js");
+
+const User = require("./db/User.js");
 
 const app = express();
 
-const connectDB = async () => {
-    mongoose.connect("mongodb://localhost:27017/db")
-
-    // schema
-    const productSchema = new mongoose.Schema({});
-
-    // model
-    const product = mongoose.model('product', productSchema);
-    const data = await product.find();
-    console.log(data);
-}
-
 app.get("/", (req, res) => {
-    res.send("App is Working !!");
-})
+    res.send("App is working on port 5000!");
+});
+
+// middlewares
+
+app.use(express.json()); // middleware to parse the incoming json data in the req body into js objects 
+app.use(cors()); // middleware to allow communication between applications
+
+// post req to register users
+app.post("/register", async (req, res) => {
+    let user = new User(req.body);
+    let result = await user.save();
+    res.send(result);
+});
 
 app.listen(5000);
