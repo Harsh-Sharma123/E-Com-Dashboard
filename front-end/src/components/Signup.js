@@ -1,5 +1,6 @@
 
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 const Signup = () => {
     
@@ -7,10 +8,26 @@ const Signup = () => {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
 
-    const handleSubmit = () => {
+    const navigate = useNavigate();
+
+    const handleSubmit = async () => {
         console.log(name);
         console.log(email);
         console.log(password);
+        const result = await fetch("http://localhost:5000/register", {
+            method: 'POST',
+            body: JSON.stringify({name, email, password}),
+            headers: {
+                'content-type': 'application/json'
+            },
+        });
+        const res = await result.json();
+        console.log(res);
+
+        if(res){
+            navigate("/");
+        }
+        
     }
     
     return (
