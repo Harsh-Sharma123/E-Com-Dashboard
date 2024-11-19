@@ -20,7 +20,10 @@ const Navbar = () => {
             <li><NavLink activeClassName='active' to="/add">Add Product</NavLink></li>
             <li><NavLink activeClassName='active' to="/update">Update Product</NavLink></li>
             <li><NavLink activeClassName='active' to="/profile">Profile</NavLink></li>
-            <li> { auth ?  <NavLink activeClassName='active' to="/signup" onClick={logout}>Logout</NavLink> : <NavLink activeClassName='active' to="/signup">Signup</NavLink> } </li>
+            { auth ? <li> <NavLink activeClassName='active' to="/signup" onClick={logout}>Logout</NavLink></li> :
+            <>
+            <li><NavLink activeClassName='active' to="/login">Login</NavLink></li> 
+            <li><NavLink activeClassName='active' to="/signup">Signup</NavLink></li> </>}
           </ul>
         </div>
       </div>
