@@ -38,7 +38,7 @@ const Login = () => {
     return (
         <div className='maxOuter'>
             <div className='login'>
-                <h2>Login / SignIn Form</h2>
+                <h1 className='text-center'>Login / SignIn Form</h1>
                 <div className='inputWrapper'>
                     <input className='inputBox' type="text" placeholder="Email" onChange={(e) => {setEmail(e.target.value)}} />
                     <input className='inputBox' type="password" placeholder="Password" onChange={(e) => {setPassword(e.target.value)}}/>

@@ -5,11 +5,38 @@
 .maxOuter{
   max-width: 1200px;
   margin: auto;
-  text-align: center;
+  /* text-align: center; */
 }
 
 .innerBox{
+  /* background-color: red; */
+  display: flex;
   /* background-color: green; */
+  /* align-items: center; */
+  /* justify-content: space-between; */
+}
+
+.nav-right{
+  text-align: right;
+}
+
+.nav-items{
+  width: 100%;
+  /* background-color: blue; */
+  display: flex;
+  align-items: center;
+}
+
+.logged-in{
+  justify-content: flex-start;
+}
+
+.logged-out{
+  justify-content: flex-end;
+}
+
+.text-center{
+  text-align: center;
 }
 
 .nav-ul li{
@@ -77,26 +104,44 @@
   font-size: 18px;
 }
 
+.addProductButton{
+  margin: 16px 6px;
+  padding: 6px; 
+  width: 140px;
+  border: 2px solid transparent;
+  border-radius: 6px;
+  cursor: pointer;
+  color: white;
+  background-color: rgb(100, 180, 26);
+  font-weight: bold;
+  font-size: 18px;
+}
+
+.clearButton{
+  margin: 16px 6px;
+  padding: 6px; 
+  width: 140px;
+  border: 2px solid transparent;
+  border-radius: 6px;
+  cursor: pointer;
+  color: white;
+  background-color: rgb(159, 165, 152);
+  font-weight: bold;
+  font-size: 18px;
+}
+
+.logo{
+  height: 60px;
+  width: 60px;
+  border-radius: 50%;
+  margin: 4px 10px;
+}
+
 
 @media (prefers-reduced-motion: no-preference) {
   .App-logo {
     animation: App-logo-spin infinite 20s linear;
   }
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
-}
-
-.App-link {
-  color: #61dafb;
 }
 
 @keyframes App-logo-spin {
