@@ -83,6 +83,27 @@
   align-items: center;
 }
 
+.inputSpanWrapper {
+  position: relative; /* Set position relative to contain the absolute error message */
+  width: 100%;
+  text-align: center;
+}
+
+.errorSpan {
+  position: absolute;
+  /* right: 0; Position the error message to the right */
+  top: 50%; /* Align it vertically to the center of the input field */
+  transform: translateY(-50%); /* Adjust for perfect vertical centering */
+  /* background-color: rgba(255, 0, 0, 0.2);  Optional: make background slightly transparent */
+  color: red;
+  font-size: 12px;
+  padding: 2px;
+  text-align: left;
+  width: auto; /* Adjust width to auto to fit the error text */
+  max-width: 100%; /* Prevent error from overflowing outside the input */
+  white-space: nowrap; /* Keep the error text in a single line */
+}
+
 .inputBox{
   border-radius: 6px;
   margin: auto;
