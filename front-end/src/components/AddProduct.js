@@ -1,4 +1,7 @@
-import React, { useState } from 'react'
+import React, { useState } from 'react';
+
+import toast, { Toaster } from "react-hot-toast";
+// toast.configure();
 
 export const AddProduct = () => {
 
@@ -19,20 +22,38 @@ export const AddProduct = () => {
             return false;
         }
 
-        let result = await fetch("http://localhost:5000/addProduct", {
-            method: "POST",
-            body: JSON.stringify({ name, price, category, user_id, company }),
-            headers: {
-                'Content-Type': 'application/json'
+        try{
+            let result = await fetch("http://localhost:5000/addProduct", {
+                method: "POST",
+                body: JSON.stringify({ name, price, category, user_id, company }),
+                headers: {
+                    'Content-Type': 'application/json'
+                }
+            });
+    
+            result = await result.json();
+            if(result){
+                toast.dismiss();
+                toast.success("Product Added Successfully !!");
+            }else{
+                toast.dismiss();
+                toast.error("Error in Adding Product !!");
             }
-        });
-
-        result = await result.json();
-        console.log(result);
+            setName("");
+            setPrice("");
+            setCategory("");
+            setCompany("");
+        }catch (err){
+            toast.dismiss();
+            toast.error("Error in Adding Product !!");
+        }
+        
     }
 
-
+ 
     const clearInput = () => {
+        toast.dismiss();
+        toast("Form cleared !!")
         setName("");
         setPrice("");
         setCategory("");
@@ -73,6 +94,7 @@ export const AddProduct = () => {
                     <button type="submit" className='clearButton' onClick={clearInput}>Clear</button>
                 </div>
             </div>
+            <Toaster />
         </div>
     )
 }
