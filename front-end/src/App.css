@@ -158,6 +158,21 @@
   margin: 4px 10px;
 }
 
+.productlist{
+  text-align: center;
+}
+
+.productlist ul{
+  margin: 0px;
+}
+
+.productlist ul li {
+  display: inline-block;
+  padding: 6px 20px;
+  width: 140px;
+  border: 1px solid skyblue;
+}
+
 
 @media (prefers-reduced-motion: no-preference) {
   .App-logo {
