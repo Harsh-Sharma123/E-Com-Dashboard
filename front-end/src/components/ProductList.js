@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import toast, { Toaster } from "react-hot-toast";
+import { Link } from 'react-router-dom';
 
 export const ProductList = () => {
 
@@ -40,7 +41,7 @@ export const ProductList = () => {
                 <li>Price</li>
                 <li>Category</li>
                 <li>Company</li>
-                <li>Actions</li>
+                <li className='buttonsContainer'>Actions</li>
             </ul>
             {
                 products.map((item, index) => (
@@ -50,7 +51,10 @@ export const ProductList = () => {
                         <li>{item.price}</li>
                         <li>{item.category}</li>
                         <li>{item.company}</li>
-                        <li><button onClick={() => deleteProduct(item._id)} className='deleteButton'>Delete</button></li>
+                        <li className='buttonsContainer'>
+                            <Link to={`/update/${item._id}`} className='updateProductButton' >Update</Link>
+                            <span onClick={() => deleteProduct(item._id)} className='deleteButton'>Delete</span>
+                        </li>
                     </ul>
                 ))
             }

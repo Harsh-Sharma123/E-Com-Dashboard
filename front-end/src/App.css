@@ -138,6 +138,19 @@
   font-size: 18px;
 }
 
+.updateButton{
+  margin: 16px 6px;
+  padding: 6px; 
+  width: 180px;
+  border: 2px solid transparent;
+  border-radius: 6px;
+  cursor: pointer;
+  color: white;
+  background-color: rgb(100, 180, 26);
+  font-weight: bold;
+  font-size: 18px;
+}
+
 .clearButton{
   margin: 16px 6px;
   padding: 6px; 
@@ -172,6 +185,36 @@
   width: 140px;
   border: 1px solid skyblue;
 }
+
+.buttonsContainer{
+  width: 200px !important;
+}
+
+.deleteButton{
+  padding: 4px 10px; 
+  height: 28px;
+  border: 1px solid gray;
+  border-radius: 6px;
+  text-decoration: none;
+  color: white;
+  background-color: red;
+  font-size: 14px;
+  margin-left: 4px;
+  text-align: center;
+  cursor: pointer;
+}
+
+.updateProductButton{
+  padding: 4px 10px;
+  font-size: 14px;
+  height: 28px;
+  border: 1px solid gray;
+  border-radius: 6px;
+  text-decoration: none;
+  color: white;
+  background-color: green;
+  text-align: center;
+} 
 
 
 @media (prefers-reduced-motion: no-preference) {
