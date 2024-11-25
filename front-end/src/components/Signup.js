@@ -1,5 +1,6 @@
 
 import React, { useEffect, useState } from 'react';
+import toast, { Toaster } from 'react-hot-toast';
 import { useNavigate } from 'react-router-dom';
 
 const Signup = () => {
@@ -33,10 +34,13 @@ const Signup = () => {
         console.log(res);
 
         if(res){
+            localStorage.setItem("user", JSON.stringify(res.user));
+            localStorage.setItem("token", JSON.stringify(res.auth));
+            toast.dismiss();
+            toast.success("User Registered Successfully !");
             navigate("/");
         }
 
-        localStorage.setItem("user", JSON.stringify(res));
         
     }
     

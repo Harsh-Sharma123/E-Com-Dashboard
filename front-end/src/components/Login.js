@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import toast, { Toaster } from 'react-hot-toast';
 import { useNavigate } from 'react-router-dom';
 
 const Login = () => {
@@ -10,6 +11,7 @@ const Login = () => {
 
     useEffect(() => {
         const auth = localStorage.getItem("user");
+        // toast.dismiss();
 
         if(auth){
             navigate("/")
@@ -27,8 +29,14 @@ const Login = () => {
         })
         result = await result.json();
         console.log(result);
-        if(result.name){
-            localStorage.setItem("user", JSON.stringify(result));
+        if(result.auth){
+            localStorage.setItem("user", JSON.stringify(result.user));
+            localStorage.setItem("token", JSON.stringify(result.auth));
+            // toast.dismiss();
+            toast.success("User Logged in Successfully !!");
+            setTimeout(()=>{
+
+            }, 1000);
             navigate("/");
         }else{
             alert("Incorrect Credentials!!")
@@ -45,6 +53,7 @@ const Login = () => {
                     <button type="button" className='signUpButton' onClick={handleLogin}>Sign In</button>
                 </div>
             </div>
+            {/* <Toaster /> */}
         </div>
     )
 }
