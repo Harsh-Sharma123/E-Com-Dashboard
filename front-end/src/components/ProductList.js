@@ -11,7 +11,12 @@ export const ProductList = () => {
     }, [])
 
     const getProducts = async () => {
-        let result = await fetch("http://localhost:5000/products");
+        let result = await fetch("http://localhost:5000/products",{
+            headers: {
+                'authorization': ` bearer ${JSON.parse(localStorage.getItem("token"))}`
+            }
+        });
+        // let statuscode = result.status;
         result = await result.json();
         setProducts(result);
         console.log(products);
@@ -19,15 +24,22 @@ export const ProductList = () => {
 
     const deleteProduct = async (id) => {
         let result = await fetch(`http://localhost:5000/product/${id}`, {
-            method: "DELETE"
+            method: "DELETE",
+            headers: {
+                'authorization': `bearer ${JSON.parse(localStorage.getItem("token"))}`
+            }
         })
 
+        let statuscode = result.status;
         result = await result.json();
 
-        if(result){
+        if(statuscode === 200){
             toast.dismiss();
             toast.success("Product Deleted Successfully !!");
             getProducts();
+        }else{
+            toast.dismiss();
+            toast.error("Error in deleting the product !!")
         }
 
     }
@@ -36,11 +48,19 @@ export const ProductList = () => {
         let key = e.target.value;
         console.log(key);
         if(key){
-            let result = await fetch(`http://localhost:5000/search/${key}`);
+            let result = await fetch(`http://localhost:5000/search/${key}`, {
+                headers: {
+                    'authorization': `bearer ${JSON.parse(localStorage.getItem("token"))}`
+                }
+            });
+            let statuscode = result.status;
             result = await result.json();
-            console.log(result)
-            if(result){
+            // console.log(result)
+            if(statuscode === 200){
                 setProducts(result);
+            }else{
+                toast.dismiss();
+                toast.error("Could not search products due to internal error !")
             }
         }else{
             getProducts();
@@ -77,7 +97,7 @@ export const ProductList = () => {
                 :
                 <h1>No Result Found !</h1>
             }
-            <Toaster />
+            {/* <Toaster /> */}
         </div>
     )
 }

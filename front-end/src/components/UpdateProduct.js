@@ -20,7 +20,10 @@ export const UpdateProduct = () => {
 
     const getProductDetails = async () => {
         let product = await fetch(`http://localhost:5000/product/${params.id}`, {
-            method: "GET"
+            method: "GET",
+            headers: {
+                'authorization': `bearer ${JSON.parse(localStorage.getItem("token"))}`
+            }
         });
         product = await product.json();
         console.log(product);
@@ -45,12 +48,15 @@ export const UpdateProduct = () => {
                 method: "PUT",
                 body: JSON.stringify({ name, price, category, company }),
                 headers: {
-                    'Content-Type': "application/json"
+                    'Content-Type': "application/json",
+                    'authorization': `bearer ${JSON.parse(localStorage.getItem("token"))}`
                 }
             });
+
+            let statuscode = result.status;
             result = await result.json();
-            console.log(result.acknowledged);
-            if (result.acknowledged) {
+            
+            if (statuscode === 200) {
                 toast.success("Product Updated Successfully !!");
             } else {
                 toast.error("Product was not updated due to some error !!");
@@ -109,7 +115,7 @@ export const UpdateProduct = () => {
                     <button type="submit" className='clearButton' onClick={clearInput}>Clear</button>
                 </div>
             </div>
-            <Toaster />
+            {/* <Toaster /> */}
         </div>
     )
 }

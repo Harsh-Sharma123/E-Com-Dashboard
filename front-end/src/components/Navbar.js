@@ -1,4 +1,5 @@
 import React, { useEffect } from 'react';
+import toast from 'react-hot-toast';
 import { Link, NavLink, useNavigate } from 'react-router-dom';
 
 const Navbar = () => {
@@ -6,9 +7,13 @@ const Navbar = () => {
   const auth = localStorage.getItem("user");
   const navigate = useNavigate();
 
+  // console.log(JSON.parse(auth).name)
+
   const logout = () => {
     localStorage.clear();
     navigate("/signup");
+    toast.dismiss();
+    toast.success("User Logged out Successfully !!");
   }
 
   return (
@@ -24,9 +29,9 @@ const Navbar = () => {
                 <ul className='nav-ul'>
                   <li><NavLink activeClassName='active' to="/">Products</NavLink></li>
                   <li><NavLink activeClassName='active' to="/add">Add Product</NavLink></li>
-                  <li><NavLink activeClassName='active' to="/update">Update Product</NavLink></li>
-                  <li><NavLink activeClassName='active' to="/profile">Profile</NavLink></li>
-                  <li> <NavLink activeClassName='active' to="/signup" onClick={logout}>Logout ({JSON.parse(auth).name})</NavLink></li>
+                  {/* <li><NavLink activeClassName='active' to="/update">Update Product</NavLink></li> */}
+                  {/* <li><NavLink activeClassName='active' to="/profile">Profile</NavLink></li> */}
+                  <li> <NavLink activeClassName='active' to="/signup" onClick={logout}>Logout ({JSON.parse(auth).name}) </NavLink></li>
                 </ul>
                 :
                 <ul className='nav-ul'>

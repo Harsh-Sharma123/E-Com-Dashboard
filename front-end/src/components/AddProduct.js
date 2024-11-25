@@ -22,20 +22,22 @@ export const AddProduct = () => {
             return false;
         }
 
-        try{
+        try {
             let result = await fetch("http://localhost:5000/addProduct", {
                 method: "POST",
                 body: JSON.stringify({ name, price, category, user_id, company }),
                 headers: {
-                    'Content-Type': 'application/json'
+                    'Content-Type': 'application/json',
+                    'authorization': `bearer ${JSON.parse(localStorage.getItem("token"))}`
                 }
             });
-    
+            let statuscode = result.status;
             result = await result.json();
-            if(result){
+            // console.log(statuscode);
+            if (statuscode === 200) {
                 toast.dismiss();
                 toast.success("Product Added Successfully !!");
-            }else{
+            } else {
                 toast.dismiss();
                 toast.error("Error in Adding Product !!");
             }
@@ -43,14 +45,14 @@ export const AddProduct = () => {
             setPrice("");
             setCategory("");
             setCompany("");
-        }catch (err){
+        } catch (err) {
             toast.dismiss();
             toast.error("Error in Adding Product !!");
         }
-        
+
     }
 
- 
+
     const clearInput = () => {
         toast.dismiss();
         toast("Form cleared !!")
@@ -94,7 +96,7 @@ export const AddProduct = () => {
                     <button type="submit" className='clearButton' onClick={clearInput}>Clear</button>
                 </div>
             </div>
-            <Toaster />
+            {/* <Toaster /> */}
         </div>
     )
 }
