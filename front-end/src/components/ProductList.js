@@ -32,9 +32,26 @@ export const ProductList = () => {
 
     }
 
+    const searchProduct = async (e) => {
+        let key = e.target.value;
+        console.log(key);
+        if(key){
+            let result = await fetch(`http://localhost:5000/search/${key}`);
+            result = await result.json();
+            console.log(result)
+            if(result){
+                setProducts(result);
+            }
+        }else{
+            getProducts();
+        }
+    }
+
     return (
         <div className='maxOuter productlist'>
             <h1 className='text-center'>Product List</h1>
+            <input type="text" placeholder="Search Product" className='searhProduct' onChange={(e) => {searchProduct(e)}}/>
+            {/* <button onClick={searchProduct} className='searchProductButton'>Search</button> */}
             <ul>
                 <li>S.No.</li>
                 <li>Name</li>
@@ -44,7 +61,7 @@ export const ProductList = () => {
                 <li className='buttonsContainer'>Actions</li>
             </ul>
             {
-                products.map((item, index) => (
+                products.length > 0 ? products.map((item, index) => (
                     <ul key={item._id}>
                         <li>{index + 1}</li>
                         <li>{item.name}</li>
@@ -57,6 +74,8 @@ export const ProductList = () => {
                         </li>
                     </ul>
                 ))
+                :
+                <h1>No Result Found !</h1>
             }
             <Toaster />
         </div>
