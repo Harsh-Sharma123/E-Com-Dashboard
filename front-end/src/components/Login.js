@@ -20,6 +20,13 @@ const Login = () => {
 
     const handleLogin = async () => {
         // console.log(email, password);
+
+        if(!email || !password){
+            toast.dismiss();
+            toast.error("Please enter your email and password for logging in");
+            return ;
+        }
+
         let result = await fetch("http://localhost:5000/login", {
             method: "post",
             body: JSON.stringify({email, password}),
@@ -32,7 +39,7 @@ const Login = () => {
         if(result.auth){
             localStorage.setItem("user", JSON.stringify(result.user));
             localStorage.setItem("token", JSON.stringify(result.auth));
-            // toast.dismiss();
+            toast.dismiss();
             toast.success("User Logged in Successfully !!");
             setTimeout(()=>{
 

@@ -55,6 +55,15 @@ app.post("/login", async (req, res) => {
     }
 })
 
+app.get("/users", async (req, res) => {
+    let users = await User.find();
+    if(users.length > 0){
+        res.send(users);
+    }else{
+        res.status(401).send("No User Found!");
+    }
+})
+
 app.post("/addProduct", verifyJWT, async (req, res) => {
     let product = new Product(req.body);
     let result = await product.save(); 
