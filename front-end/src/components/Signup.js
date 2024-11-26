@@ -20,9 +20,28 @@ const Signup = () => {
     })
 
     const handleSubmit = async () => {
-        console.log(name);
-        console.log(email);
-        console.log(password);
+        // console.log(name);
+        // console.log(email);
+        // console.log(password);
+
+        const users = await fetch("http://localhost:5000/users");
+        let usersRes = await users.json();
+        for(let user of usersRes){
+            if(user.email === email){
+                toast.dismiss();
+                toast.error("Email ID is already registered with some user !")
+                return;
+            }
+        }
+
+        return ;
+
+        if(!name || !email || !password){
+            toast.dismiss();
+            toast.error("Please fill all the details for registering User.");
+            return ;
+        }
+
         const result = await fetch("http://localhost:5000/register", {
             method: 'POST',
             body: JSON.stringify({name, email, password}),
