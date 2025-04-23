@@ -25,6 +25,7 @@ app.use(cors()); // middleware to allow communication between applications
 app.post("/register", async (req, res) => {
     let user = new User(req.body);
     let result = await user.save();
+
     result = result.toObject();
     if(result){
         jwt.sign({ user }, jwtKey, { expiresIn: "2h" }, (err, token) => {
