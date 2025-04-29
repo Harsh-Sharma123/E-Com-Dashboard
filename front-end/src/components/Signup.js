@@ -24,17 +24,17 @@ const Signup = () => {
         // console.log(email);
         // console.log(password);
 
-        const users = await fetch("http://localhost:5000/users");
-        let usersRes = await users.json();
-        for(let user of usersRes){
-            if(user.email === email){
-                toast.dismiss();
-                toast.error("Email ID is already registered with some user !")
-                return;
-            }
-        }
+        // const users = await fetch("http://localhost:5000/users");
+        // let usersRes = await users.json();
+        // for(let user of usersRes){
+        //     if(user.email === email){
+        //         toast.dismiss();
+        //         toast.error("Email ID is already registered with some user !")
+        //         return;
+        //     }
+        // }
 
-        return ;
+        // return ;
 
         if(!name || !email || !password){
             toast.dismiss();
@@ -68,7 +68,7 @@ const Signup = () => {
             <div className='signupForm'>
                 <h1>Register / Sign Up Form</h1>
                 <div className='inputWrapper'>
-                    <input className='inputBox' type="text" placeholder="Enter your name" onChange={(e)=>setName(e.target.value)} />
+                    <input className='inputBox' type="text" placeholder="Enter your name" onChange={(e)=>{setName(e.target.value); console.log(e.target.value)}} />
                     <input className='inputBox' type="text" placeholder="Enter your email" onChange={(e)=>setEmail(e.target.value)} />
                     <input className='inputBox' type="password" placeholder="Enter your password" onChange={(e)=>setPassword(e.target.value)} />
                     <button type="button" className='signUpButton' onClick={handleSubmit}>Sign Up</button>
